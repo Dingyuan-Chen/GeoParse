@@ -5,10 +5,10 @@ This codebase is tested on Ubuntu 20.04.2 LTS with python 3.8. Follow the below 
 * Setup conda environment (recommended).
 ```bash
 # Create a conda environment
-conda create -y -n maple python=3.8
+conda create -y -n geoparse python=3.8
 
 # Activate the environment
-conda activate maple
+conda activate geoparse
 
 # Install torch (requires version >= 1.8.1) and torchvision
 # Please refer to https://pytorch.org/ if you need a different cuda version
@@ -31,12 +31,12 @@ python setup.py develop
 cd ..
 ```
 
-* Clone MaPLe code repository and install requirements
+* Clone GeoParse code repository and install requirements
 ```bash
-# Clone MaPLe code base
-git clone https://github.com/muzairkhattak/multimodal-prompt-learning.git
+# Clone GeoParse code base
+git clone https://github.com/Dingyuan-Chen/GeoParse.git
 
-cd multimodal-prompt-learning/
+cd GeoParse/
 # Install requirements
 
 pip install -r requirements.txt
