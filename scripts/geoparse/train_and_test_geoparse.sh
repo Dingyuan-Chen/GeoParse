@@ -16,7 +16,7 @@ CFG=vit_b16_c2_ep5_batch4_2ctx
 SHOTS=30
 
 
-DIR=output/debug/train_base_hiera_debug_v15/${DATASET}/shots_${SHOTS}/${TRAINER}/${CFG}/seed${SEED}
+DIR=output/geoparse/train_base_hiera/${DATASET}/shots_${SHOTS}/${TRAINER}/${CFG}/seed${SEED}
 if [ -d "$DIR" ]; then
     echo "Results are available in ${DIR}. Resuming..."
     python train.py \
