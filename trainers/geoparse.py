@@ -230,20 +230,6 @@ class CustomCLIP(nn.Module):
         self.dtype = clip_model.dtype
 
         self.clip_model = clip_model
-        self.rank_loss = nn.MarginRankingLoss()
-
-    def layout_loss(self, logits, labels):
-        losses = torch.zeros(1).cuda()
-        y1 = torch.ones(1).cuda()
-
-        if torch.unique(labels).size()[0] > 1:
-            values, indexs = torch.sort(labels, descending=True)
-            for ii in range(indexs.size()[0]):
-                for jj in range(ii + 1, indexs.size()[0]):
-                    if values[ii] > values[jj]:
-                        losses += self.rank_loss(logits[indexs[ii]][values[ii]].unsqueeze(0), logits[indexs[jj]][values[ii]].unsqueeze(0), y1)
-
-        return losses
 
     def forward(self, image, label=None, fnames=None):
         tokenized_prompts = self.tokenized_prompts
@@ -352,11 +338,11 @@ class CustomCLIP(nn.Module):
         if self.prompt_learner.training:
             targets, targets_top, indices_top = prepare_targets(label)
 
-            return (0.4 * F.cross_entropy(logits, label) + 0.5 * F.cross_entropy(span_logits, label) +
-                    0.05 * F.cross_entropy(logits2, targets_top) + 0.05 * F.cross_entropy(orien_logits, targets_top))
+            return (0.3 * F.cross_entropy(logits, label) + 0.3 * F.cross_entropy(span_logits, label) +
+                    0.2 * F.cross_entropy(logits2, targets_top) + 0.2 * F.cross_entropy(orien_logits, targets_top))
 
-        scores = F.softmax(logits * 0.4 + span_logits * 0.5, dim=-1)
-        scores2 = F.softmax(logits2 * 0.05 + orien_logits * 0.05, dim=-1)
+        scores = F.softmax(logits * 0.3 + span_logits * 0.3, dim=-1)
+        scores2 = F.softmax(logits2 * 0.2 + orien_logits * 0.2, dim=-1)
 
         scores[:, 0:3] += scores2[:, :1]
         scores[:, 3:5] += scores2[:, 1:2]
