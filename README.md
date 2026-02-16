@@ -1,4 +1,4 @@
-# GeoParse: Bridging the semantic gap for explainable fine-grained greenhouse recognition based on a geometric concept parsing framework from high-resolution remote sensing imagery
+# GeoParse: Bridging the attribute-to-category gap for explainable fine-grained greenhouse recognition based on a geometric concept parsing framework from high-resolution remote sensing imagery
 
 ## Installation 
 For installation and other package requirements, please follow the instructions detailed in [INSTALL.md](docs/INSTALL.md). 
