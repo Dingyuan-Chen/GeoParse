@@ -1,0 +1,6 @@
+0 small plastic tunnel
+1 medium plastic tunnel
+2 large plastic tunnel
+3 standard greenhouse
+4 wide span greenhouse
+5 gutter connected greenhouse
